@@ -9,7 +9,7 @@ const benchModule = (function () {
   const HIGHER_EXPONENT = 14;
 
   const randomArr = (size) => _.times(size, () => Math.random());
-  const numerically = (n1, n2) => n1 - n2;
+  // const numerically = (n1, n2) => n1 - n2;
 
   const makeOptions = numItems => algoName => ({
     id: numItems,
@@ -36,8 +36,13 @@ const benchModule = (function () {
     const fixedSizeMakeOptions = makeOptions(numItems);
 
     suite
+    /*
     .add(`${numItems} elements: native sort`, () => {
       randomArr(numItems).sort(numerically);
+    }, fixedSizeMakeOptions('native'))
+    */
+    .add(`${numItems} elements: native sort`, () => {
+      quickSort(randomArr(numItems));
     }, fixedSizeMakeOptions('native'))
     .add(`${numItems} elements: your mergeSort`, () => {
       mergeSort(randomArr(numItems));
